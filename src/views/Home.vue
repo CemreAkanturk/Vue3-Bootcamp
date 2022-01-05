@@ -27,10 +27,11 @@ export default {
   },
   methods: {
     updatedCategory(catId) {
-     const url=catId?`/bookmarks?_expand=category&_expand=user&categoryId=${catId}`:"/bookmarks?_expand=category&_expand=user";
-	this.$appAxios.get(url).then((res) => {
-      this.bookmarkList = res?.data || [];
-    });
+      const url = catId ? `/bookmarks?_expand=category&_expand=user&categoryId=${catId}` : "/bookmarks?_expand=category&_expand=user";
+
+      this.$appAxios.get(url).then((res) => {
+        this.bookmarkList = res?.data || [];
+      });
     },
   },
 };
