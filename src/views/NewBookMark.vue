@@ -45,6 +45,14 @@ export default {
         Object.keys(this.userData)?.forEach((field) => (this.userData[field] = null));
         this.$router.push({ name: "HomePage" });
       });
+
+      const socketData = {
+        ...saveData,
+        user: this._getCurrentUser,
+        category: this.categoryList.find((x) => x.id == saveData.categoryId),
+      };
+
+      this.$socket.emit("newBookmark", socketData);
     },
   },
   computed: {

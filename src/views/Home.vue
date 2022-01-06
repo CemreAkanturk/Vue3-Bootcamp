@@ -25,6 +25,11 @@ export default {
       this.bookmarkList = res?.data || [];
     });
   },
+  mounted() {
+    this.$socket.on("newBookmarkAdded", (data) => {
+      this.bookmarkList.push(data)
+    });
+  },
   methods: {
     updatedCategory(catId) {
       const url = catId ? `/bookmarks?_expand=category&_expand=user&categoryId=${catId}` : "/bookmarks?_expand=category&_expand=user";
